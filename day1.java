@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +7,10 @@ import java.io.File;
 
 public class Main {
     public static void main(String args[]) throws IOException {
-        String fileName = new String(Files.readAllBytes(Paths.get("file.txt")));
+       Scanner scanner = new Scanner(new File("numbers.txt"));
 
         List<Integer> left = new ArrayList<>();
         List<Integer> right = new ArrayList<>();
-
-        Scanner scanner = new Scanner(fileName);
 
         while (scanner.hasNextLine()) {
             String[] parts = scanner.nextLine().split("   ");
@@ -28,7 +24,7 @@ public class Main {
 
     int totalDistance = 0;
     for (int i = 0; i<left.size(); i++) {
-        totalDistance += Math.abs(left.set(i, 2)- right.set(i, 2));
+        totalDistance += Math.abs(left.get(i_- right.get(i));
         }
 
     System.out.println(totalDistance);
