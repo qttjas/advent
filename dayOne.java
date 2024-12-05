@@ -1,16 +1,15 @@
 import java.io.IOException;
 import java.util.Collections;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 
-public class Main {
+public class dayOne {
     public static void main(String args[]) throws IOException {
        Scanner scanner = new Scanner(new File("numbers.txt"));
 
-        List<Integer> left = new ArrayList<>();
-        List<Integer> right = new ArrayList<>();
+        ArrayList<Integer> left = new ArrayList<Integer>();
+        ArrayList<Integer> right = new ArrayList<Integer>();
 
         while (scanner.hasNextLine()) {
             String[] parts = scanner.nextLine().split("   ");
@@ -18,13 +17,12 @@ public class Main {
             right.add(Integer.parseInt(parts[1]));
         }
 
-        scanner.close();
         Collections.sort(left);
         Collections.sort(right);
 
     int totalDistance = 0;
     for (int i = 0; i<left.size(); i++) {
-        totalDistance += Math.abs(left.get(i_- right.get(i));
+        totalDistance += Math.abs(left.get(i)- right.get(i));
         }
 
     System.out.println(totalDistance);
