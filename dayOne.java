@@ -1,12 +1,12 @@
-import java.io.IOException;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
+import java.io.IOException;
 
 public class dayOne {
     public static void main(String args[]) throws IOException {
-       Scanner scanner = new Scanner(new File("numbers.txt"));
+        Scanner scanner = new Scanner(new File("src/numbers.txt"));
 
         ArrayList<Integer> left = new ArrayList<Integer>();
         ArrayList<Integer> right = new ArrayList<Integer>();
@@ -20,11 +20,11 @@ public class dayOne {
         Collections.sort(left);
         Collections.sort(right);
 
-    int totalDistance = 0;
-    for (int i = 0; i<left.size(); i++) {
-        totalDistance += Math.abs(left.get(i)- right.get(i));
+        int totalDistance = 0;
+        for (int i = 0; i<left.size(); i++) {
+            totalDistance += Math.abs(left.get(i)- right.get(i));
         }
 
-    System.out.println(totalDistance);
+        System.out.println(totalDistance);
     }
 }
