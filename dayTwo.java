@@ -42,4 +42,44 @@ public class dayTwo {
         }
         return increasing || decreasing;
     }
+
+    private static boolean partTwo(String report) {
+        if (isSafe(report)) {
+            return true;
+        }
+
+        String[] levels = report.split(" ");
+        int[] nums = new int[levels.length];
+
+        for (int i = 0; i < levels.length; i++) {
+            nums[i] = Integer.parseInt(levels[i]);
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (remove(nums, i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean remove(int[] nums, int indexRemove) {
+        int[] modified = new int[nums.length - 1];
+        int j = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i != indexRemove) {
+                modified[j++] = nums[i];
+            }
+        }
+        return isSafe(String.join(" ", toStringArray(modified)));
+    }
+
+    private static String[] toStringArray(int[] nums) {
+        String[] strArray = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            strArray[i] = Integer.toString(nums[i]);
+        }
+        return strArray;
+    }
 }
