@@ -26,11 +26,12 @@ public class dayFive {
                 }
                 nums.add(newNums);
             }
-
+            int partOne = 0;
             for (int[] numbers : nums) {
                 boolean bool = true;
                 for (int[] rules : total) {
                     boolean bools = check(numbers, rules);
+
                 }
             }
         }
@@ -66,5 +67,19 @@ public class dayFive {
 
         int firstIndex = -1;
         int secondIndex = -1;
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == firstNum) {
+                firstIndex = i;
+            }
+            if (numbers[i] == secondNum) {
+                secondIndex = i;
+            }
+        }
+        if (firstIndex < secondIndex) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
