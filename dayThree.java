@@ -18,30 +18,41 @@ public class dayThree {
         scanner.close();
 
         ArrayList<String> patterns = new ArrayList<>();
-        String pattern = "mul\\([1-9][0-9]{0,2},[1-9][0-9]{0,2}\\)";
-        match(input, pattern, patterns);
-        int sum = calculate(patterns);
-        System.out.println(sum);
-    }
+        String regex = "mul\\([1-9][0-9]{0,2},[1-9][0-9]{0,2}\\)";
+        String regexPartTwo = "do\\(\\)|don't\\(\\)";
 
-    public static void match(ArrayList<String> lines, String regex, ArrayList<String> matches) {
-        for (String line : lines) {
-            Matcher m = Pattern.compile(regex).matcher(line);
+        for (String line : input) {
+            Matcher m = Pattern.compile(regex + "|" + regexPartTwo).matcher(line);
             while (m.find()) {
-                matches.add(m.group());
+                patterns.add(m.group());
             }
         }
+        int total = partTwo(patterns);
+        System.out.println(total);
     }
 
-    public static int calculate(ArrayList<String> matches) {
-        int sum = 0;
+    public static int partTwo(ArrayList<String> matches) {
+        int total = 0;
+        boolean process = true;
+
         for (String match : matches) {
-            String str = match.substring(4, match.length() - 1);
-            String[] numbers = str.split(",");
-            int numOne = Integer.parseInt(numbers[0]);
-            int numTwo = Integer.parseInt(numbers[1]);
-            sum += numOne * numTwo;
+            if (match.equals("do()")) {
+                process = true;
+            } else if (match.equals("don't()")) {
+                process = false;
+            } else if (match.startsWith("mul") && process) {
+                total += doMulOperation(match);
+            }
         }
-        return sum;
+        return total;
+    }
+
+    public static int doMulOperation(String operation) {
+        int openParenthesis = operation.indexOf("(");
+        int comma = operation.indexOf(",");
+        int closeParenthesis = operation.indexOf(")");
+        String first = operation.substring(openParenthesis + 1, comma);
+        String second = operation.substring(comma + 1, closeParenthesis);
+        return Integer.parseInt(first) * Integer.parseInt(second);
     }
 }
